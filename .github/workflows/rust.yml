@@ -10,20 +10,15 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  build:
-
+  build_for_linux:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Build
-      run: cargo build --verbose
-    - name: Run tests
-      run: cargo test --verbose
-    - name: Run app
-      run: cargo run --verbose
-    - name: Download output
-      uses: actions/download-artifact@v3
-      id: download-output
-    - name: Echo download output path
-      run: echo ${{ steps.download-output.outputs.path }}
+      - name: Build
+        run: cargo build --release
+      - name: Test
+        run: cargo test --release
+      - name: Download artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: target
+          path: target/
