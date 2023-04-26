@@ -22,7 +22,7 @@ jobs:
       run: cargo test --verbose
     - name: Run app
       run: cargo run --verbose
-    - name: ls1
-      run: ls -a
-    - name: ls2
-      run: ls target/
+    - uses: actions/download-artifact@v3
+      with:
+        name: target
+        path: target
