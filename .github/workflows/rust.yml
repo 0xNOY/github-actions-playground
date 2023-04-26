@@ -22,10 +22,8 @@ jobs:
       run: cargo test --verbose
     - name: Run app
       run: cargo run --verbose
-    - uses: actions/download-artifact@v3
+    - name: Download output
+      uses: actions/download-artifact@v3
       id: download-output
-      with:
-        name: github-actions-playground
-        path: target/debug/
     - name: Echo download output path
       run: echo ${{ steps.download-output.outputs.path }}
