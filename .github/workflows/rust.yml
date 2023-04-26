@@ -8,15 +8,16 @@ env:
   CARGO_TERM_COLOR: always
 
 jobs:
-  job_1:
-    name: Add 3 and 7
+  build_for_linux:
     runs-on: ubuntu-latest
     steps:
-      - shell: bash
-        run: |
-          expr 3 + 7 > math-homework.txt
-      - name: Upload math result for job 1
+      - uses: actions/checkout@v3
+      - name: Build
+        run: cargo build --release
+      - name: Test
+        run: cargo test --release
+      - name: Upload Output
         uses: actions/upload-artifact@v3
         with:
-          name: homework
-          path: math-homework.txt
+          name: output
+          path: target/release/github-actions-playground
