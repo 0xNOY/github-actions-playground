@@ -20,8 +20,9 @@ jobs:
         run: cargo test --release
       - shell: bash
         run: echo "Hello, world!" > hello.txt
+      - run: ls -al
       - name: Download artifacts
         uses: actions/download-artifact@v3
         with:
-          name: hello
+          name: hello.txt
           path: hello.txt
