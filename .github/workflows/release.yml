@@ -56,8 +56,8 @@ jobs:
 
       - name: Set ENV
         run: |
-          echo "CARGO_DST=target/${{ matrix.target }}/release/${{ env.APP_NAME }}${{ env.APP_EXTENSION }}" >> $GITHUB_ENV
-          echo "ZIP_DST=${{ env.APP_NAME }}-${{ matrix.target }}.zip" >> $GITHUB_ENV
+          echo "CARGO_DST=target/${{ matrix.target }}/release/${{ env.APP_NAME }}${{ env.APP_EXTENSION }}" >> ${{ contains(matrix.os, 'windows') && '$env:GITHUB_ENV' || '$GITHUB_ENV' }}
+          echo "ZIP_DST=${{ env.APP_NAME }}-${{ matrix.target }}.zip" >> ${{ contains(matrix.os, 'windows') && '$env:GITHUB_ENV' || '$GITHUB_ENV' }}
 
       - name: Build
         run: cargo build --release --target ${{ matrix.target }}
