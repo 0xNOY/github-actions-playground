@@ -68,7 +68,7 @@ jobs:
       
       - name: Zip binary for Windows
         if: contains(matrix.os, 'windows')
-        run: powershell compress-archive ${{ env.CARGO_DST }} ${{ env.ZIP_DST }}
+        run: powershell Compress-Archive -Path ${{ env.CARGO_DST }} -DestinationPath ${{ env.ZIP_DST }}
 
       - name: Upload to release
         uses: actions/upload-release-asset@v1
