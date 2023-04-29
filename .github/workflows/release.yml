@@ -64,7 +64,7 @@ jobs:
 
       - name: Zip binary for Linux and MacOS
         if: contains(matrix.os, 'ubuntu') || contains(matrix.os, 'macos')
-        run: zip ${{ env.ZIP_DST }} ${{ env.CARGO_DST }}
+        run: zip -j ${{ env.ZIP_DST }} ${{ env.CARGO_DST }}
       
       - name: Zip binary for Windows
         if: contains(matrix.os, 'windows')
