@@ -18,6 +18,9 @@ jobs:
       upload_url: ${{ steps.create-release.outputs.upload_url }}
 
     steps:
+      - name: Echo tag name
+        run: echo ${{ github.ref }}
+
       - id: create-release
         uses: actions/create-release@v1
         env:
